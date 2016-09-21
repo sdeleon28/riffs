@@ -1,10 +1,11 @@
 import React from 'react';
+import BackButton from './BackButton';
 
-export default (
-  <div className={styles.backButton}>
-    <Link to="/">
-      <i className="fa fa-arrow-left fa-3x" />
-    </Link>
-    <h1>Song</h1>
+
+
+export default () => (
+  <div>
+    <BackButton />
+    <h1>Song 1</h1>
   </div>
 );

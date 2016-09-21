@@ -3,15 +3,18 @@ import { Link } from 'react-router';
 import styles from './Home.css';
 
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div>
-        <div className={styles.container}>
-          <h2>Home</h2>
+export default () => (
+  <div>
+    <div className={styles.container}>
+      <h2>Home hello 4</h2>
+      <ul>
+        <li>
           <Link to="/counter">to Counter</Link>
-        </div>
-      </div>
-    );
-  }
-}
+        </li>
+        <li>
+          <Link to="/idea-detail">to Idea Detail</Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+);

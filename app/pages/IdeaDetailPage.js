@@ -20,7 +20,7 @@ const styles = {
     flex: 1,
     flexDirection: 'column',
   },
-}
+};
 
 const IdeaDetailPage = () => (
   <div style={styles.container}>
