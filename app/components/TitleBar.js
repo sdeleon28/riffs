@@ -7,6 +7,7 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    margin: 'auto 3%',
   },
   invisibleBox: {
     width: 41,

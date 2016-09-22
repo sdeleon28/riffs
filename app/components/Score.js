@@ -1,29 +1,28 @@
 import React from 'react';
+import palette from '../styles/palette';
 
 
 const styles = {
   container: {
-    height: '100%',
-    width: '100%',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  link: {
-    opacity: 1,
-    flexGrow: 1,
+    padding: '3%',
+    backgroundColor: palette.color3,
   },
   image: {
-    maxHeight: '100%',
     maxWidth: '100%',
+    maxHeight: '100%',
+    objectFit: 'contain',
+    cursor: 'pointer',
   },
 };
 
 export default () => (
   <div style={styles.container}>
-    <a href="#" style={styles.link}>
-      <img
-        style={styles.image}
-        src=""></img>
-    </a>
+    <img
+      style={styles.image}
+      onClick={() => alert('Not Implemented yet')}
+      src="file:///home/santi/tmp/guybrush.jpg"></img>
   </div>
 );

@@ -2,6 +2,8 @@ import React from 'react';
 import TitleBar from '../components/TitleBar';
 import Score from '../components/Score';
 import RiffMetadata from '../components/RiffMetadata';
+import MediaPlayersList from '../components/MediaPlayersList';
+import palette from '../styles/palette';
 
 const pt = React.PropTypes;
 
@@ -24,28 +26,26 @@ const styles = {
     flexGrow: 1,
     flexBasis: 0,
     flexDirection: 'column',
-    border: '1px solid white',
+    margin: '3% 1% 3% 3%',
   },
   rightColumn: {
     flexGrow: 1,
     flexBasis: 0,
     flexDirection: 'column',
-    padding: '3%',
-    border: '1px solid white',
+    margin: '3% 3% 3% 1%',
   },
   scoreContainer: {
     flexGrow: 1,
     flexBasis: 0,
   },
-  metadata: {
-    flexGrow: 2,
-    margin: '3% 3% 1.5% 3%',
-    backgroundColor: 'red',
+  metadataWrapper: {
+    flowDirection: 'row',
+    margin: '0 0 1% 0',
   },
-  players: {
-    flexGrow: 3,
-    margin: '1.5% 3% 3% 3%',
-    backgroundColor: 'blue',
+  playersWrapper: {
+    flexGrow: 1,
+    flowDirection: 'row',
+    margin: '1% 0 0 0',
   },
 };
 
@@ -54,10 +54,12 @@ const IdeaDetailPage = () => (
     <TitleBar />
     <div style={styles.columnsWrapper}>
       <div style={styles.leftColumn}>
-        <div style={styles.metadata}>
+        <div style={styles.metadataWrapper}>
           <RiffMetadata />
         </div>
-        <div style={styles.players}>Content</div>
+        <div style={styles.playersWrapper}>
+          <MediaPlayersList />
+        </div>
       </div>
       <div style={styles.rightColumn}>
         <div style={styles.scoreContainer}>
