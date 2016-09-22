@@ -6,7 +6,7 @@ import styles from './Home.css';
 export default () => (
   <div>
     <div className={styles.container}>
-      <h2>Home hello 4</h2>
+      <h2>Home</h2>
       <ul>
         <li>
           <Link to="/counter">to Counter</Link>

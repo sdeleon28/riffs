@@ -17,14 +17,14 @@ h2 {
 }
 
 p {
-  font-size: 24px;
+  font-size: 12px;
 }
 
 li {
   list-style: none;
 }
 
-a {
+a, h1, h2, h3, h4, p {
   color: white;
   opacity: .75;
   text-decoration: none;
@@ -34,4 +34,16 @@ a:hover {
   opacity: 1;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Make flexbox the default paradigm */
+div {
+  display: flex;
+}
+
+/* Make top containers greedy */
+#root, [data-reactroot] {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
 }
