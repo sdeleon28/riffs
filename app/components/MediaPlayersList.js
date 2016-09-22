@@ -9,11 +9,14 @@ const styles = {
     padding: '1%',
     backgroundColor: palette.color3,
   },
+  list: {
+    paddingBottom: '20px',
+  },
 };
 
 export default () => (
   <div style={styles.container}>
-    <ul>
+    <ul style={styles.list}>
       <li>
         <MediaPlayer
           title="Broken English"
