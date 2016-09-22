@@ -1,11 +1,12 @@
 import React from 'react';
+import MediaPlayer from '../components/MediaPlayer';
 import palette from '../styles/palette';
 
 
 const styles = {
   container: {
     flex: 1,
-    margin: '1.5% 0 0 0',
+    padding: '1%',
     backgroundColor: palette.color3,
   },
 };
@@ -13,9 +14,24 @@ const styles = {
 export default () => (
   <div style={styles.container}>
     <ul>
-      <li>Player 1</li>
-      <li>Player 2</li>
-      <li>Player 3</li>
+      <li>
+        <MediaPlayer
+          title="Broken English"
+          file="file:///home/santi/tmp/riffs/audio/broken_english.mp3"
+        />
+      </li>
+      <li>
+        <MediaPlayer
+          title="To The Core"
+          file="file:///home/santi/tmp/riffs/audio/to_the_core.mp3"
+        />
+      </li>
+      <li>
+        <MediaPlayer
+          title="Any Way You Want It"
+          file="file:///home/santi/tmp/riffs/audio/any_way_you_want_it.mp3"
+        />
+      </li>
     </ul>
   </div>
 );

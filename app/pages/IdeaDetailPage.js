@@ -12,7 +12,7 @@ const styles = {
   container: {
     flexGrow: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     height: '100%',
   },
   columnsWrapper: {
@@ -21,18 +21,19 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-around',
     margin: '0 auto 3%',
+    width: '97%',
   },
   leftColumn: {
     flexGrow: 1,
     flexBasis: 0,
     flexDirection: 'column',
-    margin: '3% 1% 3% 3%',
+    margin: '0 1% 0 1%',
   },
   rightColumn: {
     flexGrow: 1,
     flexBasis: 0,
     flexDirection: 'column',
-    margin: '3% 3% 3% 1%',
+    margin: '0 1% 0 1%',
   },
   scoreContainer: {
     flexGrow: 1,

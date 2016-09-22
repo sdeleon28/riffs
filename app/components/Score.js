@@ -23,6 +23,6 @@ export default () => (
     <img
       style={styles.image}
       onClick={() => alert('Not Implemented yet')}
-      src="file:///home/santi/tmp/guybrush.jpg"></img>
+      src="file:///home/santi/tmp/riffs/guybrush.jpg"></img>
   </div>
 );
