@@ -50,29 +50,33 @@ const styles = {
   },
 };
 
-const IdeaDetailPage = () => (
+const IdeaDetailPage = ({ title, metadata, media, score }) => (
   <div style={styles.container}>
-    <TitleBar />
+    <TitleBar title={title} />
     <div style={styles.columnsWrapper}>
       <div style={styles.leftColumn}>
         <div style={styles.metadataWrapper}>
-          <RiffMetadata />
+          <RiffMetadata {...metadata} />
         </div>
         <div style={styles.playersWrapper}>
-          <MediaPlayersList />
+          <MediaPlayersList media={media} />
         </div>
       </div>
       <div style={styles.rightColumn}>
         <div style={styles.scoreContainer}>
-          <Score />
+          <Score file={score} />
         </div>
       </div>
     </div>
   </div>
 );
 
-// IdeaDetail.propTypes = {
-//   scoreUri: pt.string.isRequired,
-// };
+
+IdeaDetailPage.propTypes = {
+  title: pt.string.isRequired,
+  metadata: pt.shape(RiffMetadata.propTypes).isRequired,
+  media: MediaPlayersList.propTypes.media,
+  score: pt.string.isRequired,
+};
 
 export default IdeaDetailPage;

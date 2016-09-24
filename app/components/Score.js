@@ -1,6 +1,8 @@
 import React from 'react';
 import palette from '../styles/palette';
 
+const pt = React.PropTypes;
+
 
 const styles = {
   container: {
@@ -18,11 +20,17 @@ const styles = {
   },
 };
 
-export default () => (
+const Score = ({ file }) => (
   <div style={styles.container}>
     <img
       style={styles.image}
       onClick={() => alert('Not Implemented yet')}
-      src="file:///home/santi/tmp/riffs/guybrush.jpg"></img>
+      src={file}></img>
   </div>
 );
+
+Score.propTypes = {
+  file: pt.string.isRequired,
+};
+
+export default Score;

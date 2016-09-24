@@ -1,6 +1,8 @@
 import React from 'react';
 import BackButton from './BackButton';
 
+const pt = React.PropTypes;
+
 
 const styles = {
   container: {
@@ -15,10 +17,16 @@ const styles = {
   },
 };
 
-export default () => (
+const TitleBar = ({ title }) => (
   <div style={styles.container}>
     <BackButton />
-    <h1>Song 2</h1>
+    <h1>{title}</h1>
     <div style={styles.invisibleBox}></div>
   </div>
 );
+
+TitleBar.propTypes = {
+  title: pt.string.isRequired,
+};
+
+export default TitleBar;

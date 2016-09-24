@@ -2,6 +2,8 @@ import React from 'react';
 import MediaPlayer from '../components/MediaPlayer';
 import palette from '../styles/palette';
 
+const pt = React.PropTypes;
+
 
 const styles = {
   container: {
@@ -14,27 +16,20 @@ const styles = {
   },
 };
 
-export default () => (
+const MediaPlayersList = ({ media }) => (
   <div style={styles.container}>
     <ul style={styles.list}>
-      <li>
-        <MediaPlayer
-          title="Broken English"
-          file="file:///home/santi/tmp/riffs/audio/broken_english.mp3"
-        />
-      </li>
-      <li>
-        <MediaPlayer
-          title="To The Core"
-          file="file:///home/santi/tmp/riffs/audio/to_the_core.mp3"
-        />
-      </li>
-      <li>
-        <MediaPlayer
-          title="Any Way You Want It"
-          file="file:///home/santi/tmp/riffs/audio/any_way_you_want_it.mp3"
-        />
-      </li>
+      {
+        media.map(mediaMeta => (
+          <MediaPlayer key={mediaMeta.title} {...mediaMeta} />
+        ))
+      }
     </ul>
   </div>
 );
+
+MediaPlayersList.propTypes = {
+  media: pt.arrayOf(pt.shape(MediaPlayer.propTypes)).isRequired,
+};
+
+export default MediaPlayersList;
