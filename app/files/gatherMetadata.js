@@ -1,6 +1,7 @@
 import fs from 'fs';
 import _ from 'lodash';
 import ini from 'ini';
+import path from 'path';
 
 
 const gatherMetadata = dir => {
@@ -11,16 +12,21 @@ const gatherMetadata = dir => {
     if (stat && stat.isDirectory()) {
       const files = fs.readdirSync(ideaDir);
       let meta = {
-        name: ideaDirName,
+        title: ideaDirName,
         keys: [],
         tags: [],
+        author: 'Unknown',
       };
       if (_.includes(files, 'meta.ini')) {
-        meta = parseMeta(`${ideaDir}/meta.ini`);
+        meta = {
+          ...meta,
+          ...parseMeta(`${ideaDir}/meta.ini`),
+        };
       }
       return {
-        ...meta,
         ...categorizeFiles(files.map(x => `${ideaDir}/${x}`)),
+        title: meta.title,
+        metadata: meta,
       };
     } else {
       return null;
@@ -29,7 +35,10 @@ const gatherMetadata = dir => {
 }
 
 const categorizeFiles = files => ({
-  audio: files.filter(x => x.endsWith('.mp3')),
+  media: files.filter(x => x.endsWith('.mp3')).map(x => ({
+    title: path.basename(x),
+    file: x,
+  })),
   score: files.find(x => x.endsWith('/score.jpg')) || null,
 });
 
