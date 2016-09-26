@@ -4,7 +4,7 @@ const pt = React.PropTypes;
 const { dialog } = require('electron').remote;
 
 
-const Settings = ({ setDirectory }) => (
+const Settings = ({ setDirectory, reloadMetadata }) => (
   <div>
     <a
       href="#"
@@ -12,7 +12,9 @@ const Settings = ({ setDirectory }) => (
         { properties: ['openDirectory'] },
         paths => {
           if (paths) {
-            setDirectory(paths[0]);
+            const path = paths[0];
+            setDirectory(path);
+            reloadMetadata(path);
           }
         }
       )}
@@ -24,6 +26,7 @@ const Settings = ({ setDirectory }) => (
 
 Settings.propTypes = {
   setDirectory: pt.func.isRequired,
+  reloadMetadata: pt.func.isRequired,
 };
 
 export default Settings;

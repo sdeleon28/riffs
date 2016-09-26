@@ -15,7 +15,7 @@ const inlineStyles = {
   },
 };
 
-const Home = ({ directory }) => (
+const Home = ({ directory, metadata }) => (
   <div style={inlineStyles.container}>
     <div style={inlineStyles.topBarWrapper}>
       <DirectorySelectionBar directory={directory} />
@@ -36,6 +36,7 @@ const Home = ({ directory }) => (
 
 Home.propTypes = {
   directory: pt.string,
+  metadata: pt.array,
 };
 
 export default Home;

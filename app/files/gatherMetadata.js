@@ -3,7 +3,7 @@ import _ from 'lodash';
 import ini from 'ini';
 
 
-export const gatherMetadata = dir => {
+const gatherMetadata = dir => {
   const ideaDirs = fs.readdirSync(dir);
   return ideaDirs.map(ideaDirName => {
     const ideaDir = `${dir}/${ideaDirName}`;
@@ -43,3 +43,5 @@ const parseMeta = filename => {
 };
 
 const parseIni = filename => ini.decode(fs.readFileSync(filename, 'utf8'));
+
+export default gatherMetadata;
