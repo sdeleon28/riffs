@@ -25,13 +25,19 @@ const gatherMetadata = dir => {
       }
       return {
         ...categorizeFiles(files.map(x => `${ideaDir}/${x}`)),
+        dirName: ideaDirName,
         title: meta.title,
         metadata: meta,
       };
     } else {
       return null;
     }
-  }).filter(x => x != null);
+  })
+    .filter(x => x != null)
+    .reduce((acc, elem) => ({
+      ...acc,
+      [elem.dirName]: elem,
+    }), {});
 }
 
 const categorizeFiles = files => ({

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import IdeaDetailPage from '../pages/IdeaDetailPage';
 
 const mapStateToProps = ({ metadata }) => ({
-  metadata: metadata[0].metadata,
-  media: metadata[0].media,
-  score: metadata[0].score,
-  title: metadata[0].title,
+  metadata: metadata.riff1.metadata,
+  media: metadata.riff1.media,
+  score: metadata.riff1.score,
+  title: metadata.riff1.title,
 });
 
 // export default () => (

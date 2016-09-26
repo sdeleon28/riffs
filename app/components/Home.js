@@ -36,7 +36,7 @@ const Home = ({ directory, metadata }) => (
 
 Home.propTypes = {
   directory: pt.string,
-  metadata: pt.array,
+  metadata: pt.object,
 };
 
 export default Home;
