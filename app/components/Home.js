@@ -27,7 +27,7 @@ const Home = ({ directory, metadata }) => (
           <Link to="/counter">to Counter</Link>
         </li>
         <li>
-          <Link to="/idea-detail">to Idea Detail</Link>
+          <Link to="/idea-detail/riff1">to Idea Detail</Link>
         </li>
       </ul>
     </div>
