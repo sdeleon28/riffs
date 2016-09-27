@@ -1,51 +1,63 @@
 import React from 'react';
-import { Link } from 'react-router';
-import styles from './Home.css';
 import DirectorySelectionBar from './DirectorySelectionBar';
+import IdeasTable from './IdeasTable';
+import KeyFiltersList from './KeyFiltersList'
+import palette from '../styles/palette';
+
 const pt = React.PropTypes;
 
 
-const inlineStyles = {
+const box = {
+  margin: '1% 2%',
+  backgroundColor: palette.color3,
+  padding: '0 2%',
+};
+
+const styles = {
   container: {
     flexGrow: 1,
+    flexDirection: 'column',
   },
   topBarWrapper: {
+    ...box,
+  },
+  filtersWrapper: {
+    flexGrow: 2,
+  },
+  tableWrapper: {
+    ...box,
+    margin: '1% 2% 3% 2%',
+    padding: '2%',
+    flexGrow: 6,
+  },
+  keyFiltersWrapper: {
+    ...box,
     flexGrow: 1,
-    margin: '0 2%',
+    backgroundColor: palette.color3,
+    margin: '2% 1% 2% 2%',
+  },
+  tagFiltersWrapper: {
+    ...box,
+    flexGrow: 2,
+    backgroundColor: palette.color3,
+    margin: '2% 2% 2% 1%',
   },
 };
 
 const Home = ({ directory, metadata }) => (
-  <div style={inlineStyles.container}>
-    <div style={inlineStyles.topBarWrapper}>
+  <div style={styles.container}>
+    <div style={styles.topBarWrapper}>
       <DirectorySelectionBar directory={directory} />
     </div>
-    <div className={styles.container}>
-      <table>
-        <thead>
-          <tr>
-            <td>Title</td>
-            <td>Keys</td>
-            <td>Tags</td>
-            <td></td>
-          </tr>
-        </thead>
-        <tbody>
-          { metadata &&
-            Object.keys(metadata)
-              .map(x => metadata[x])
-              .map(({ dirName, metadata: { title, keys, tags }}) => (
-                <tr key={dirName}>
-                  <td>
-                    <Link to={`/idea-detail/${dirName}`}>{title}</Link>
-                  </td>
-                  <td>{keys.join(', ')}</td>
-                  <td>{tags.join(', ')}</td>
-                </tr>
-              ))
-          }
-        </tbody>
-      </table>
+    <div style={styles.filtersWrapper}>
+      <div style={styles.keyFiltersWrapper}>
+        <KeyFiltersList />
+      </div>
+      <div style={styles.tagFiltersWrapper}>
+      </div>
+    </div>
+    <div style={styles.tableWrapper}>
+      <IdeasTable metadata={metadata} />
     </div>
   </div>
 );
