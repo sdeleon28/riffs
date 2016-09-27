@@ -21,7 +21,31 @@ const Home = ({ directory, metadata }) => (
       <DirectorySelectionBar directory={directory} />
     </div>
     <div className={styles.container}>
-      <h2>Home</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Title</td>
+            <td>Keys</td>
+            <td>Tags</td>
+          </tr>
+        </thead>
+        <tbody>
+          { metadata &&
+            Object.keys(metadata)
+              .map(x => {
+                console.log(metadata[x]);
+                return metadata[x];
+              })
+              .map(({ metadata: { title, keys, tags }}) => (
+                <tr>
+                  <td>{title}</td>
+                  <td>{keys.join(', ')}</td>
+                  <td>{tags.join(', ')}</td>
+                </tr>
+              ))
+          }
+        </tbody>
+      </table>
       <ul>
         <li>
           <Link to="/counter">to Counter</Link>
