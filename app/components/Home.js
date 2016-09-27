@@ -27,18 +27,18 @@ const Home = ({ directory, metadata }) => (
             <td>Title</td>
             <td>Keys</td>
             <td>Tags</td>
+            <td></td>
           </tr>
         </thead>
         <tbody>
           { metadata &&
             Object.keys(metadata)
-              .map(x => {
-                console.log(metadata[x]);
-                return metadata[x];
-              })
-              .map(({ metadata: { title, keys, tags }}) => (
-                <tr>
-                  <td>{title}</td>
+              .map(x => metadata[x])
+              .map(({ dirName, metadata: { title, keys, tags }}) => (
+                <tr key={dirName}>
+                  <td>
+                    <Link to={`/idea-detail/${dirName}`}>{title}</Link>
+                  </td>
                   <td>{keys.join(', ')}</td>
                   <td>{tags.join(', ')}</td>
                 </tr>
@@ -46,14 +46,6 @@ const Home = ({ directory, metadata }) => (
           }
         </tbody>
       </table>
-      <ul>
-        <li>
-          <Link to="/counter">to Counter</Link>
-        </li>
-        <li>
-          <Link to="/idea-detail/riff1">to Idea Detail</Link>
-        </li>
-      </ul>
     </div>
   </div>
 );
