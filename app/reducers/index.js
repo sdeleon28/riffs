@@ -4,6 +4,7 @@ import counter from './counter';
 import directory from './directory';
 import metadata from './metadata';
 import keyFilters from './keyFilters';
+import tagFilters from './tagFilters';
 
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   directory,
   metadata,
   keyFilters,
+  tagFilters,
   routing
 });
 

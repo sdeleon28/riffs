@@ -2,6 +2,7 @@ import React from 'react';
 import DirectorySelectionBar from './DirectorySelectionBar';
 import IdeasTable from './IdeasTable';
 import KeyFiltersList from './KeyFiltersList'
+import TagFiltersListContainer from '../containers/TagFiltersListContainer';
 import palette from '../styles/palette';
 
 const pt = React.PropTypes;
@@ -54,6 +55,7 @@ const Home = ({ directory, metadata }) => (
         <KeyFiltersList />
       </div>
       <div style={styles.tagFiltersWrapper}>
+        <TagFiltersListContainer />
       </div>
     </div>
     <div style={styles.tableWrapper}>

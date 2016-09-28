@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import _ from 'lodash';
 import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { keys } from './components/KeyFiltersList';
@@ -19,7 +20,14 @@ const keyFilters = keys
   }), {});
 const directory = getDirectory();
 const metadata = gatherMetadata(directory);
-const store = configureStore({ directory, metadata, keyFilters });
+const tagFilters = _.flatten(
+  Object.keys(metadata)
+    .map(x => metadata[x].metadata.tags))
+  .reduce((acc, elem) => ({
+    ...acc,
+    [elem]: false,
+  }), {});
+const store = configureStore({ directory, metadata, keyFilters, tagFilters });
 const history = syncHistoryWithStore(hashHistory, store);
 
 render(
