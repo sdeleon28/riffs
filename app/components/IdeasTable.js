@@ -25,7 +25,7 @@ const styles = {
     height: '3em',
   },
   cell: {
-    padding: '2% 0',
+    padding: '1% 0',
   },
 };
 
