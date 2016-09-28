@@ -23,9 +23,6 @@ const styles = {
   },
 };
 
-const goToKey = key => alert(`Should navigate to key: ${key}`);
-const goToTag = tag => alert(`Should navigate to tag: ${tag}`);
-
 const RiffMetadata = ({ author, keys, tags }) => (
   <div style={styles.container}>
     <ul style={styles.list}>
@@ -41,7 +38,7 @@ const RiffMetadata = ({ author, keys, tags }) => (
         </p>
         <ul style={styles.tagList}>
           {
-            keys.map(key => <Tag onClick={goToKey} key={key}>{key}</Tag>)
+            keys.map(key => <Tag key={key}>{key}</Tag>)
           }
         </ul>
       </li>
@@ -51,7 +48,7 @@ const RiffMetadata = ({ author, keys, tags }) => (
         </p>
         <ul style={styles.tagList}>
           {
-            tags.map(tag => <Tag onClick={goToTag} key={tag}>{tag}</Tag>)
+            tags.map(tag => <Tag key={tag}>{tag}</Tag>)
           }
         </ul>
       </li>

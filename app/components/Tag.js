@@ -12,11 +12,10 @@ const styles = {
     borderRadius: '5px',
     marginRight: '10px',
     marginBottom: '5px',
-    cursor: 'pointer',
   },
 };
 
-const Tag = ({ onClick, children }) => (
+const Tag = ({ children }) => (
   <li
     style={styles.container}
     onClick={() => onClick(children)}
@@ -26,7 +25,6 @@ const Tag = ({ onClick, children }) => (
 );
 
 Tag.propTypes = {
-  onClick: pt.func.isRequired,
   children: pt.string.isRequired,
 };
 
