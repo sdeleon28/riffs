@@ -10,9 +10,9 @@ const majorKeysToMinorKeys = keys.reduce((acc, [key, value]) => ({
   [key]: value,
 }), {});
 
-const getActiveKeys = keyFilters =>
-  Object.keys(keyFilters)
-    .map(x => keyFilters[x] ? x : null)
+const getActiveFilters = filters =>
+  Object.keys(filters)
+    .map(x => filters[x] ? x : null)
     .filter(x => x != null);
 
 /**
@@ -20,28 +20,41 @@ const getActiveKeys = keyFilters =>
  * Elements pass the filter only when they meet all the selected keys IN EITHER
  * the major mode or its relative minor.
  */
-const filterMetadataByKeys = (metadata, keyFilters) => {
-  const activeKeys = getActiveKeys(keyFilters)
+const filterMetadataByKeysAndTags = (metadata, keyFilters, tagFilters) => {
+  const activeKeys = getActiveFilters(keyFilters);
+  const activeTags = getActiveFilters(tagFilters);
+
+  if (activeKeys.length == 0 && activeTags.length == 0) {
+    return metadata;
+  }
+
+  let dirNamesFilteredByKeys = Object.keys(metadata);
   if (activeKeys.length > 0) {
-    return Object.keys(metadata)
+    dirNamesFilteredByKeys = Object.keys(metadata)
       .filter(dirName => _.every(
         activeKeys.map(x =>
           _.includes(metadata[dirName].metadata.keys, x) ||
           _.includes(metadata[dirName].metadata.keys, majorKeysToMinorKeys[x])
         )
-      ))
-      .reduce((acc, elem) => ({
-        ...acc,
-        [elem]: metadata[elem],
-      }), {});
-  } else {
-    return metadata;
+      ));
   }
+  let dirNamesFilteredByKeysAndTags = [...dirNamesFilteredByKeys];
+  if (activeTags.length > 0) {
+    dirNamesFilteredByKeysAndTags = dirNamesFilteredByKeys
+      .filter(dirName => _.every(
+        activeTags.map(x => _.includes(metadata[dirName].metadata.tags, x))
+      ));
+  }
+  return dirNamesFilteredByKeysAndTags
+    .reduce((acc, elem) => ({
+      ...acc,
+      [elem]: metadata[elem],
+    }), {});
 };
 
-const mapStateToProps = ({ directory, metadata, keyFilters }) => ({
+const mapStateToProps = ({ directory, metadata, keyFilters, tagFilters }) => ({
   directory,
-  metadata: metadata ? filterMetadataByKeys(metadata, keyFilters) : null,
+  metadata: metadata ? filterMetadataByKeysAndTags(metadata, keyFilters, tagFilters) : null,
 });
 
 export default connect(mapStateToProps)(Home);
