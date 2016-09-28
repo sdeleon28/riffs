@@ -22,15 +22,17 @@ const styles = {
 
 const Score = ({ file }) => (
   <div style={styles.container}>
-    <img
-      style={styles.image}
-      onClick={() => alert('Not Implemented yet')}
-      src={file}></img>
+    { file &&
+      <img
+        style={styles.image}
+        onClick={() => alert('Not Implemented yet')}
+        src={file}></img>
+    }
   </div>
 );
 
 Score.propTypes = {
-  file: pt.string.isRequired,
+  file: pt.string,
 };
 
 export default Score;

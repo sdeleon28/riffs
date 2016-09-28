@@ -71,12 +71,11 @@ const IdeaDetailPage = ({ title, metadata, media, score }) => (
   </div>
 );
 
-
 IdeaDetailPage.propTypes = {
   title: pt.string.isRequired,
   metadata: pt.shape(RiffMetadata.propTypes).isRequired,
   media: MediaPlayersList.propTypes.media,
-  score: pt.string.isRequired,
+  score: pt.string,
 };
 
 export default IdeaDetailPage;
