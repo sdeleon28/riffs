@@ -1,11 +1,13 @@
 import React from 'react';
+import SettingsRefreshIcon from './SettingsRefreshIcon';
 
 const pt = React.PropTypes;
 const { dialog } = require('electron').remote;
 
 
-const Settings = ({ setDirectory, reloadMetadata }) => (
+const Settings = ({ setDirectory, reloadMetadata, directory }) => (
   <div>
+    <SettingsRefreshIcon reloadMetadata={reloadMetadata} directory={directory} />
     <a
       href="#"
       onClick={() => dialog.showOpenDialog(
@@ -27,6 +29,7 @@ const Settings = ({ setDirectory, reloadMetadata }) => (
 Settings.propTypes = {
   setDirectory: pt.func.isRequired,
   reloadMetadata: pt.func.isRequired,
+  directory: pt.string,
 };
 
 export default Settings;
