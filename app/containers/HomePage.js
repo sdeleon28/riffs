@@ -5,10 +5,7 @@ import Home from '../components/Home';
 import _ from 'lodash';
 
 
-const majorKeysToMinorKeys = keys.reduce((acc, [key, value]) => ({
-  ...acc,
-  [key]: value,
-}), {});
+const majorKeysToMinorKeys = _.fromPairs(keys);
 
 const getActiveFilters = filters =>
   Object.keys(filters)
@@ -45,11 +42,7 @@ const filterMetadataByKeysAndTags = (metadata, keyFilters, tagFilters) => {
         activeTags.map(x => _.includes(metadata[dirName].metadata.tags, x))
       ));
   }
-  return dirNamesFilteredByKeysAndTags
-    .reduce((acc, elem) => ({
-      ...acc,
-      [elem]: metadata[elem],
-    }), {});
+  return _.fromPairs(dirNamesFilteredByKeysAndTags.map(x => [x, metadata[x]]));
 };
 
 const mapStateToProps = ({ directory, metadata, keyFilters, tagFilters }) => ({
