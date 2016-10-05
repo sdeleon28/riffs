@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import palette from '../styles/palette';
+import MediaPlayer from '../components/MediaPlayer';
 
 const pt = React.PropTypes;
 
@@ -26,6 +27,7 @@ const styles = {
   },
   cell: {
     padding: '1% 0',
+    textAlign: 'center',
   },
 };
 
@@ -37,18 +39,23 @@ const IdeasTable = ({ metadata }) => (
         <td>Title</td>
         <td>Keys</td>
         <td>Tags</td>
-        <td></td>
+        <td>Play</td>
       </tr>
     </thead>
     <tbody>
       {
-        metadata.map(({ dirName, metadata: { title, keys, tags }}) => (
+        metadata.map(({ dirName, media, metadata: { title, keys, tags }}) => (
           <tr style={styles.row} key={dirName}>
             <td style={styles.cell}>
               <Link to={`/idea-detail/${dirName}`}>{title}</Link>
             </td>
             <td style={styles.cell}>{keys.join(', ')}</td>
             <td style={styles.cell}>{tags.join(', ')}</td>
+            <td style={styles.cell}>
+              { media.length > 0 && media[0].file &&
+                <MediaPlayer file={media[0].file} />
+              }
+            </td>
           </tr>
         ))
       }
@@ -58,6 +65,7 @@ const IdeasTable = ({ metadata }) => (
 
 IdeasTable.propTypes = {
   metadata: pt.arrayOf(pt.shape({
+    media: pt.arrayOf(pt.shape(MediaPlayer.propTypes)).isRequired,
     dirName: pt.string.isRequired,
     metadata: pt.shape({
       title: pt.string.isRequired,
