@@ -45,9 +45,15 @@ const filterMetadataByKeysAndTags = (metadata, keyFilters, tagFilters) => {
   return _.fromPairs(dirNamesFilteredByKeysAndTags.map(x => [x, metadata[x]]));
 };
 
+const filterAndSortMetadata = (metadata, keyFilters, tagFilters) =>
+  _.reverse(_.sortBy(
+    filterMetadataByKeysAndTags(metadata, keyFilters, tagFilters),
+    x => x.metadata.stars,
+  ));
+
 const mapStateToProps = ({ directory, metadata, keyFilters, tagFilters }) => ({
   directory,
-  metadata: metadata ? filterMetadataByKeysAndTags(metadata, keyFilters, tagFilters) : null,
+  metadata: metadata ? filterAndSortMetadata(metadata, keyFilters, tagFilters) : null,
 });
 
 export default connect(mapStateToProps)(Home);

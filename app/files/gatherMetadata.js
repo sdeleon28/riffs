@@ -15,6 +15,7 @@ const gatherMetadata = dir => {
         title: ideaDirName,
         keys: [],
         tags: [],
+        stars: 0,
         author: 'Unknown',
       };
       if (_.includes(files, 'meta.ini')) {
@@ -57,6 +58,12 @@ const parseMeta = filename => {
   };
 };
 
-const parseIni = filename => ini.decode(fs.readFileSync(filename, 'utf8'));
+const parseIni = filename => {
+  const configObj = ini.decode(fs.readFileSync(filename, 'utf8'));
+  return {
+    ...configObj,
+    stars: configObj.stars ? parseInt(configObj.stars) : 0,
+  };
+};
 
 export default gatherMetadata;

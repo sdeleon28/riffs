@@ -24,24 +24,27 @@ const styles = {
   },
   filtersWrapper: {
     flexGrow: 2,
+    flexBasis: '25%',
   },
   tableWrapper: {
     ...box,
     margin: '1% 2% 3% 2%',
     padding: '2%',
-    flexGrow: 6,
+    flexBasis: '50%',
+    overflowY: 'scroll',
   },
   keyFiltersWrapper: {
     ...box,
-    flexGrow: 1,
     backgroundColor: palette.color3,
     margin: '2% 1% 2% 2%',
+    flexBasis: '35%',
   },
   tagFiltersWrapper: {
     ...box,
-    flexGrow: 2,
+    flexGrow: 1,
     backgroundColor: palette.color3,
     margin: '2% 2% 2% 1%',
+    overflowY: 'scroll',
   },
 };
 
@@ -66,7 +69,7 @@ const Home = ({ directory, metadata }) => (
 
 Home.propTypes = {
   directory: pt.string,
-  metadata: pt.object,
+  metadata: IdeasTable.propTypes.metadata,
 };
 
 export default Home;

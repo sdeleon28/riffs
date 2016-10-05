@@ -41,25 +41,31 @@ const IdeasTable = ({ metadata }) => (
       </tr>
     </thead>
     <tbody>
-      { metadata &&
-        Object.keys(metadata)
-          .map(x => metadata[x])
-          .map(({ dirName, metadata: { title, keys, tags }}) => (
-            <tr style={styles.row} key={dirName}>
-              <td style={styles.cell}>
-                <Link to={`/idea-detail/${dirName}`}>{title}</Link>
-              </td>
-              <td style={styles.cell}>{keys.join(', ')}</td>
-              <td style={styles.cell}>{tags.join(', ')}</td>
-            </tr>
-          ))
+      {
+        metadata.map(({ dirName, metadata: { title, keys, tags }}) => (
+          <tr style={styles.row} key={dirName}>
+            <td style={styles.cell}>
+              <Link to={`/idea-detail/${dirName}`}>{title}</Link>
+            </td>
+            <td style={styles.cell}>{keys.join(', ')}</td>
+            <td style={styles.cell}>{tags.join(', ')}</td>
+          </tr>
+        ))
       }
     </tbody>
   </table>
 );
 
 IdeasTable.propTypes = {
-  metadata: pt.object,
+  metadata: pt.arrayOf(pt.shape({
+    dirName: pt.string.isRequired,
+    metadata: pt.shape({
+      title: pt.string.isRequired,
+      keys: pt.arrayOf(pt.string).isRequired,
+      tags: pt.arrayOf(pt.string).isRequired,
+      stars: pt.number.isRequired,
+    }),
+  })),
 };
 
 export default IdeasTable;
