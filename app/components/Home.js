@@ -36,14 +36,14 @@ const styles = {
   keyFiltersWrapper: {
     ...box,
     backgroundColor: palette.color3,
-    margin: '2% 1% 2% 2%',
+    margin: '0.5% 0.5% 0.5% 2%',
     flexBasis: '35%',
   },
   tagFiltersWrapper: {
     ...box,
     flexGrow: 1,
     backgroundColor: palette.color3,
-    margin: '2% 2% 2% 1%',
+    margin: '0.5% 2% 0.5% 0.5%',
     overflowY: 'scroll',
   },
 };
