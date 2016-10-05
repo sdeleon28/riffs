@@ -5,10 +5,20 @@ import { toggle } from '../actions/tagFilters';
 
 
 const mapStateToProps = ({ tagFilters }) => ({
-  tags: Object.keys(tagFilters).map(filterName => ({
-    filterName,
-    active: tagFilters[filterName]
-  })),
+  tags: Object.keys(tagFilters)
+    .map(filterName => ({
+      filterName,
+      active: tagFilters[filterName]
+    }))
+    .sort((a, b) => {
+      if (a.filterName > b.filterName) {
+        return 1;
+      }
+      if (a.filterName < b.filterName) {
+        return -1;
+      }
+      return 0;
+    }),
 });
 
 const mapDispatchToProps = dispatch => ({
