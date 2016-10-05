@@ -62,7 +62,7 @@ const Home = ({ directory, metadata }) => (
       </div>
     </div>
     <div style={styles.tableWrapper}>
-      <IdeasTable metadata={metadata} />
+      <IdeasTable masterDirectory={directory} metadata={metadata} />
     </div>
   </div>
 );

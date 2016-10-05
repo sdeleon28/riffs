@@ -1,5 +1,7 @@
 import React from 'react';
+import path from 'path';
 import { Link } from 'react-router';
+import { ipcRenderer } from 'electron';
 import palette from '../styles/palette';
 import MediaPlayer from '../components/MediaPlayer';
 
@@ -32,7 +34,7 @@ const styles = {
 };
 
 
-const IdeasTable = ({ metadata }) => (
+const IdeasTable = ({ masterDirectory, metadata }) => (
   <table style={styles.table}>
     <thead style={styles.headers}>
       <tr style={styles.headersRow}>
@@ -47,7 +49,11 @@ const IdeasTable = ({ metadata }) => (
         metadata.map(({ dirName, media, metadata: { title, keys, tags }}) => (
           <tr style={styles.row} key={dirName}>
             <td style={styles.cell}>
-              <Link to={`/idea-detail/${dirName}`}>{title}</Link>
+              <a href="javascript:void(0)" onClick={() => {
+                ipcRenderer.send('open-directory', path.join(masterDirectory, dirName));
+              }}>
+                {title}
+              </a>
             </td>
             <td style={styles.cell}>{keys.join(', ')}</td>
             <td style={styles.cell}>{tags.join(', ')}</td>
@@ -64,6 +70,7 @@ const IdeasTable = ({ metadata }) => (
 );
 
 IdeasTable.propTypes = {
+  masterDirectory: pt.string.isRequired,
   metadata: pt.arrayOf(pt.shape({
     media: pt.arrayOf(pt.shape(MediaPlayer.propTypes)).isRequired,
     dirName: pt.string.isRequired,
